@@ -1,6 +1,7 @@
 import click
 from python_terraform import *
 
+t = Terraform()
 
 class Config(object):
 
@@ -40,9 +41,12 @@ def plan (config, service, resource):
     """ Shows a preview of terraform commands.
     List of resources that you want to create.
     """
-    for fn in resource:
-        click.echo('create resource %s, under service %s in the region %s' % (resource, service, config.region))
+    for x in resource:
+        terraform_plan(x,'%s' %service,'%s' % config.region)
 
+
+def terraform_plan(resource, service, region):
+    print(resource, service, region, string.encode("ascii", "replace"))
 
 if __name__ == '__main__':
     cli ()
